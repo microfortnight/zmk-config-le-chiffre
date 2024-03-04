@@ -33,9 +33,68 @@
 };
 
 / {
-
     combos {
         compatible = "zmk,combos";
+        combo_auml {
+            timeout-ms = <50>;
+            key-positions = <0 10>;
+            bindings = <&kp RA(Q)>;
+            layers = <BASE>;
+        };
+        combo_ouml {
+            timeout-ms = <50>;
+            key-positions = <9 19>;
+            bindings = <&kp RA(P)>;
+            layers = <BASE>;
+        };
+        combo_uuml {
+            timeout-ms = <50>;
+            key-positions = <7 17>;
+            bindings = <&kp RA(Y)>;
+            layers = <BASE>;
+        };
+        combo_szlig {
+            timeout-ms = <50>;
+            key-positions = <2 12>;
+            bindings = <&kp RA(S)>;
+            layers = <BASE>;
+        };
+        combo_euro {
+            timeout-ms = <50>;
+            key-positions = <17 28>;
+            bindings = <&kp RA(N5)>;
+            layers = <BASE>;
+        };
+        combo_auml_mac {
+            timeout-ms = <50>;
+            key-positions = <0 10>;
+            bindings = <&auml_mac>;
+            layers = <MBASE>;
+        };
+        combo_ouml_mac {
+            timeout-ms = <50>;
+            key-positions = <9 19>;
+            bindings = <&ouml_mac>;
+            layers = <MBASE>;
+        };
+        combo_uuml_mac {
+            timeout-ms = <50>;
+            key-positions = <7 17>;
+            bindings = <&uuml_mac>;
+            layers = <MBASE SYM>;
+        };
+        combo_szlig_mac {
+            timeout-ms = <50>;
+            key-positions = <2 12>;
+            bindings = <&mac_szlig>;
+            layers = <MBASE>;
+        };
+        combo_euro_mac {
+            timeout-ms = <50>;
+            key-positions = <17 28>;
+            bindings = <&mac_euro>;
+            layers = <MBASE>;
+        };
         combo_esc {
             timeout-ms = <50>;
             key-positions = <0 1>;
@@ -140,6 +199,115 @@
             #binding-cells = <0>;
             bindings = <&macro_tap &bt BT_SEL 3 &bt BT_CLR>;
         };
+        
+        auml_mac_lwr: auml_mac_lwr {
+            compatible = "zmk,behavior-macro";
+            label = "AUML_MAC_LWR";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings
+                = <&macro_press   &kp LALT>
+                , <&macro_tap     &kp U>
+                , <&macro_release &kp LALT>
+                , <&macro_tap     &kp A>;
+        };
+
+        auml_mac_upr: auml_mac_upr {
+            compatible = "zmk,behavior-macro";
+            label = "AUML_MAC_UPR";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings
+                = <&macro_press   &kp LALT>
+                , <&macro_tap     &kp U>
+                , <&macro_release &kp LALT>
+                , <&macro_press   &kp LSHFT>
+                , <&macro_tap     &kp A>
+                , <&macro_release &kp LSHFT>;
+        };
+
+        ouml_mac_lwr: ouml_mac_lwr {
+            compatible = "zmk,behavior-macro";
+            label = "OUML_MAC_LWR";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings
+                = <&macro_press   &kp LALT>
+                , <&macro_tap     &kp U>
+                , <&macro_release &kp LALT>
+                , <&macro_tap     &kp O>;
+        };
+
+        ouml_mac_upr: ouml_mac_upr {
+            compatible = "zmk,behavior-macro";
+            label = "OUML_MAC_UPR";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings
+                = <&macro_press   &kp LALT>
+                , <&macro_tap     &kp U>
+                , <&macro_release &kp LALT>
+                , <&macro_press   &kp LSHFT>
+                , <&macro_tap     &kp O>
+                , <&macro_release &kp LSHFT>;
+        };
+
+        uuml_mac_lwr: uuml_mac_lwr {
+            compatible = "zmk,behavior-macro";
+            label = "UUML_MAC_LWR";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings
+                = <&macro_press   &kp LALT>
+                , <&macro_tap     &kp U>
+                , <&macro_release &kp LALT>
+                , <&macro_tap     &kp U>;
+        };
+
+        uuml_mac_upr: uuml_mac_upr {
+            compatible = "zmk,behavior-macro";
+            label = "UUML_MAC_UPR";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings
+                = <&macro_press   &kp LALT>
+                , <&macro_tap     &kp U>
+                , <&macro_release &kp LALT>
+                , <&macro_press   &kp LSHFT>
+                , <&macro_tap     &kp U>
+                , <&macro_release &kp LSHFT>;
+        };
+
+        mac_szlig: mac_szlig {
+            compatible = "zmk,behavior-macro";
+            label = "MAC_SZLIG";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings
+                = <&macro_press   &kp LALT>
+                , <&macro_tap     &kp S>
+                , <&macro_release &kp LALT>;
+        };
+
+        mac_euro: mac_euro {
+            compatible = "zmk,behavior-macro";
+            label = "MAC_EURO";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings
+                = <&macro_press   &kp LALT &kp LSHFT>
+                , <&macro_tap     &kp N2>
+                , <&macro_release &kp LALT &kp LSHFT>;
+        };
+
     };
 
     behaviors {
@@ -203,6 +371,30 @@
             #binding-cells = <0>;
             bindings = <&bt BT_SEL 3>, <&u_bt3_clr>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        
+        auml_mac: auml_mac {
+            compatible = "zmk,behavior-mod-morph";
+            label = "AUML_MAC";
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+            bindings = <&auml_mac_lwr>, <&auml_mac_upr>;
+        };
+        
+        ouml_mac: ouml_mac {
+            compatible = "zmk,behavior-mod-morph";
+            label = "OUML_MAC";
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+            bindings = <&ouml_mac_lwr>, <&ouml_mac_upr>;
+        };
+        
+        uuml_mac: uuml_mac {
+            compatible = "zmk,behavior-mod-morph";
+            label = "UUML_MAC";
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+            bindings = <&uuml_mac_lwr>, <&uuml_mac_upr>;
         };
    };
 
